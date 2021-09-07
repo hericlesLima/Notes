@@ -1,10 +1,16 @@
-import React from "react";
-import { Button, Container, makeStyles, Typography } from "@material-ui/core";
+import React, { useState } from "react";
+import {
+  Button,
+  Container,
+  makeStyles,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 
 const useStyles = makeStyles({
-  btn: {
+  /*btn: {
     fontSize: 60,
     backgroundColor: "violet",
     "&:hover": {
@@ -14,11 +20,43 @@ const useStyles = makeStyles({
   title: {
     textDecoration: "underline",
     marginBotton: 20,
+  },*/
+
+  field: {
+    marginTop: 20,
+    marginBottom: 20,
+    display: "block",
   },
 });
 
 export default function Create() {
   const classes = useStyles();
+
+  const [title, setTitle] = useState(" ");
+  const [details, setDetails] = useState(" ");
+
+  const [titleError, setTitleError] = useState(" ");
+  const [detailsError, setDetailsError] = useState(" ");
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setTitleError(false)
+    setDetailsError(false)
+
+    if(title == ''){
+      setTitleError(true)
+    }
+    
+    if(details == ''){
+      setDetailsError(true)
+    }
+
+    if (title && details) {
+      console.log(title, details);
+    }
+  };
+
 
   return (
     <Container>
@@ -31,16 +69,39 @@ export default function Create() {
         Create New Note
       </Typography>
 
-      <Button
-        className={classes.btn}
-        onClick={() => console.log("You clicked")}
-        type="submit"
-        color="secondary"
-        variant="contained"
-        endIcon={<KeyboardArrowRightIcon />}
-      >
-        Submit
-      </Button>
+      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+        <TextField
+          onChange={(e) => setTitle(e.target.value)}
+          className={classes.field}
+          label="Note title"
+          variant="outlined"
+          color="secondary"
+          fullWidth
+          required
+          error={setTitleError}
+        />
+
+        <TextField
+          onChange={(e) => setDetails(e.target.value)}
+          className={classes.field}
+          label="Details"
+          variant="outlined"
+          color="secondary"
+          multiline
+          rows={4}
+          fullWidth
+          required
+          error={setDetailsError}
+        />
+        <Button
+          type="submit"
+          color="secondary"
+          variant="contained"
+          endIcon={<KeyboardArrowRightIcon />}
+        >
+          Submit
+        </Button>
+      </form>
     </Container>
   );
 }
