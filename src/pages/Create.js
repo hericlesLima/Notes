@@ -1,9 +1,9 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
+import { Button, ButtonGroup, Container, Typography } from "@material-ui/core";
 
 export default function Create() {
   return (
-    <div>
+    <Container>
       <Typography 
         variant='h6' 
         component='h2' 
@@ -12,6 +12,15 @@ export default function Create() {
       >
         Create New Note
       </Typography>
-    </div>
+
+      <Button 
+        onClick={()=> console.log('You clicked')}
+        type='submit'
+        color='secondary'
+        variant='contained'
+      >
+        Submit
+      </Button>
+    </Container>
   );
 }
