@@ -4,39 +4,41 @@ import Create from "./pages/Create";
 import { ThemeProvider } from "@material-ui/core";
 import { createTheme } from "@material-ui/core/styles";
 import { purple } from "@material-ui/core/colors";
+import Layout from "./components/Layout";
 
 const theme = createTheme({
   palette: {
     primary: {
       main: "#fefefe",
     },
-    secondary: purple 
+    secondary: purple,
   },
-  typography:{
-    fontFamily: 'Quicksand',
+  typography: {
+    fontFamily: "Quicksand",
     fontWeightLight: 400,
     fontWeightRegular: 500,
     fontWeightMedium: 600,
     fontWeightBold: 700,
-
-  }
+  },
 });
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <Switch>
-          <Route exact path="/">
-            <Notes />
-          </Route>
-          <Route path="/create">
-            <Create />
-          </Route>
-          <Route path="/notes">
-            <Notes />
-          </Route>
-        </Switch>
+        <Layout>
+          <Switch>
+            <Route exact path="/">
+              <Notes />
+            </Route>
+            <Route path="/create">
+              <Create />
+            </Route>
+            <Route path="/notes">
+              <Notes />
+            </Route>
+          </Switch>
+        </Layout>
       </Router>
     </ThemeProvider>
   );
