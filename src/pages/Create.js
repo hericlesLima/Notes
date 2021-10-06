@@ -127,6 +127,7 @@ export default function Create() {
           color="secondary"
           variant="contained"
           endIcon={<KeyboardArrowRightIcon />}
+          onClick={() => console.log("submit")}
         >
           Submit
         </Button>

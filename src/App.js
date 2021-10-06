@@ -34,9 +34,6 @@ function App() {
             <Route path="/create">
               <Create />
             </Route>
-            <Route path="/notes">
-              <Notes />
-            </Route>
           </Switch>
         </Layout>
       </Router>
